@@ -1,0 +1,227 @@
+title: ``Отчёт по лабораторной работе 1'' subtitle: ``Подготовка
+лабораторного стенда'' author: ``Талебу Тенке Франк Устон'' institute:
+``Российский университет дружбы народов'' email: ``1032224534@pfur.ru''
+date: ``2026-03-23'' ---
+
+\subsection{Generic otions}\label{generic-otions}
+
+lang: ru-RU toc-title: ``Содержание''
+
+\subsection{Bibliography}\label{bibliography}
+
+bibliography: bib/cite.bib csl: pandoc/csl/gost-r-7-0-5-2008-numeric.csl
+
+\subsection{Pdf output format}\label{pdf-output-format}
+
+toc: true \# Table of contents toc-depth: 2 lof: true \# List of figures
+lot: true \# List of tables fontsize: 12pt linestretch: 1.5 papersize: a
+documentclass: scrreprt \#\# I18n polyglossia polyglossia-lang: name:
+russian options: - spelling=modern - babelshorthands=true
+polyglossia-otherlangs: name: english \#\# I18n babel babel-lang:
+russian babel-otherlangs: english \#\# Fonts mainfont: IBM Plex Serif
+romanfont: IBM Plex Serif sansfont: IBM Plex Sans monofont: IBM Plex
+Mono mathfont: STIX Two Math mainfontoptions:
+Ligatures=Common,Ligatures=TeX,Scale=0.94 romanfontoptions:
+Ligatures=Common,Ligatures=TeX,Scale=0.94 sansfontoptions:
+Ligatures=Common,Ligatures=TeX,Scale=MatchLowercase,Scale=0.94
+monofontoptions: Scale=MatchLowercase,Scale=0.94,FakeStretch=0.9
+mathfontoptions: \#\# Biblatex biblatex: true biblio-style:
+``gost-numeric'' biblatexoptions: - parentracker=true - backend=biber -
+hyperref=auto - language=auto - autolang=other* - citestyle=gost-numeric
+\#\# Pandoc-crossref LaTeX customization figureTitle: ``Рис.''
+tableTitle: ``Таблица'' listingTitle: ``Листинг'' lofTitle: ``Список
+иллюстраций'' lotTitle: ``Список таблиц'' lolTitle: ``Листинги'' \#\#
+Misc options indent: true header-includes: -
+
+\usepackage{indentfirst}
+
+\begin{itemize}
+\item
+  \usepackage{float}
+
+  \section{keep figures where there are in the
+  text}\label{keep-figures-where-there-are-in-the-text}
+
+  \begin{itemize}
+  \item ~
+    \subsection{\texorpdfstring{\floatplacement{figure}{H} \# keep
+    figures where there are in the
+    text}{ \# keep figures where there are in the text}}\label{keep-figures-where-there-are-in-the-text-1}
+  \end{itemize}
+\end{itemize}
+
+\section{Цель
+работы}\label{ux446ux435ux43bux44c-ux440ux430ux431ux43eux442ux44b}
+
+Целью данной работы является приобретение практических навыков установки
+Rocky Linux на виртуальную машину с помощью инструмента Vagrant.
+
+\section{Выполнение}\label{ux432ux44bux43fux43eux43bux43dux435ux43dux438ux435}
+
+\subsection{Развёртывание лабораторного стенда на ОС
+Windows}\label{ux440ux430ux437ux432ux451ux440ux442ux44bux432ux430ux43dux438ux435-ux43bux430ux431ux43eux440ux430ux442ux43eux440ux43dux43eux433ux43e-ux441ux442ux435ux43dux434ux430-ux43dux430-ux43eux441-windows}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Подготовлена рабочая среда на локальном компьютере под управлением
+  Windows.\\
+  Установлены и настроены VirtualBox и Vagrant. После установки система
+  была перезагружена.
+\item
+  В рабочем каталоге проекта созданы необходимые файлы для
+  автоматического развертывания --- 01-user.sh, 01-hostname.sh и
+  Vagrantfile.
+
+  \begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{1.png}
+  \caption{Скрипт 01-user.sh}\label{fig:001}
+  \end{figure}
+
+  \begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{2.png}
+  \caption{Скрипт 01-hostname.sh}\label{fig:002}
+  \end{figure}
+
+  \begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{3.png}
+  \caption{Фрагмент Vagrantfile с описанием provision}\label{fig:003}
+  \end{figure}
+\item
+  Выполнена регистрация box-файла в Vagrant с помощью команды:
+
+  vagrant box add rockylinux10
+  vagrant-virtualbox-rockylinux10-x86\_64.box
+
+  \begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{4.png}
+  \caption{Добавление box-файла в Vagrant}\label{fig:004}
+  \end{figure}
+\item
+  Выполнен запуск виртуальной машины Server:
+
+  vagrant up server
+
+  \begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{5.png}
+  \caption{Запуск виртуальной машины server}\label{fig:005}
+  \end{figure}
+\item
+  После успешного запуска на экране входа в систему появились
+  пользователи vagrant и созданный скриптом akabrikosov.
+
+  \begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{6.png}
+  \caption{Окно входа в систему Rocky Linux}\label{fig:006}
+  \end{figure}
+\item
+  Проверено, что при входе в систему отображается корректное имя хоста
+  server.akabrikosov.net.
+
+  \begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{7.png}
+  \caption{Проверка имени хоста в терминале}\label{fig:007}
+  \end{figure}
+\item
+  Подключение к серверу через консоль выполнено командой:
+
+  vagrant ssh server
+
+  После ввода пароля осуществлён вход и произведена проверка возможности
+  переключения на пользователя akabrikosov:
+
+  su - akabrikosov
+
+  Затем выполнен выход из системы.
+
+  \begin{figure}
+  \centering
+  \includegraphics[width=0.8\linewidth,height=\textheight,keepaspectratio]{8.png}
+  \caption{Подключение к серверу через SSH}\label{fig:008}
+  \end{figure}
+\end{enumerate}
+
+\section{Вывод}\label{ux432ux44bux432ux43eux434}
+
+В результате работы был развернут лабораторный стенд на базе Vagrant и
+VirtualBox в среде Windows.\\
+Созданы и протестированы сценарии автоматического развертывания
+виртуальной машины с использованием скриптов 01-user.sh и
+01-hostname.sh.\\
+Проверена корректность работы созданного пользователя, hostname и
+подключения через SSH.
+
+\section{Контрольные
+вопросы}\label{ux43aux43eux43dux442ux440ux43eux43bux44cux43dux44bux435-ux432ux43eux43fux440ux43eux441ux44b}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Для чего предназначен Vagrant\\
+  Vagrant предназначен для автоматизации развертывания и управления
+  виртуальными машинами.\\
+  Он упрощает настройку окружений для разработки и тестирования,
+  обеспечивая единообразие конфигураций.
+\item
+  Что такое box-файл? В чём назначение Vagrantfile\\
+  Box-файл --- это шаблон готовой виртуальной машины, содержащий
+  операционную систему и базовые настройки.\\
+  Vagrantfile --- это конфигурационный файл, описывающий параметры
+  виртуальных машин: используемый box, настройки сети, ресурсы, а также
+  сценарии инициализации (provision).
+\item
+  Приведите описание и примеры вызова основных команд Vagrant
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{vagrant\ init} --- создаёт новый Vagrantfile в текущем
+    каталоге.\\
+  \item
+    \texttt{vagrant\ box\ add\ \textless{}имя\textgreater{}\ \textless{}путь\ к\ box\textgreater{}}
+    --- добавляет образ виртуальной машины в локальное хранилище.\\
+  \item
+    \texttt{vagrant\ up} --- запускает и создаёт виртуальную машину.\\
+  \item
+    \texttt{vagrant\ ssh} --- подключается к запущенной машине по SSH.\\
+  \item
+    \texttt{vagrant\ halt} --- корректно останавливает виртуальную
+    машину.\\
+  \item
+    \texttt{vagrant\ destroy} --- полностью удаляет виртуальную
+    машину.\\
+  \item
+    \texttt{vagrant\ status} --- показывает текущее состояние всех машин
+    проекта.
+  \end{itemize}
+\item
+  Дайте построчные пояснения содержания файлов vagrant-rocky.pkr.hcl,
+  ks.cfg, Vagrantfile, Makefile
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{vagrant-rocky.pkr.hcl} --- конфигурация для утилиты Packer,
+    определяющая процесс сборки box-файла (указывается источник ISO,
+    параметры установки и скрипты автоматизации).\\
+  \item
+    \textbf{ks.cfg} --- файл автоматической установки системы
+    (kickstart), в котором задаются параметры установки ОС: язык,
+    разделы диска, учетные данные, пакеты.\\
+  \item
+    \textbf{Vagrantfile} --- основной сценарий Vagrant, описывающий
+    создание виртуальных машин (server, client), их параметры сети,
+    провижнинг и запуск вспомогательных скриптов.\\
+  \item
+    \textbf{Makefile} --- содержит набор команд для автоматизации часто
+    выполняемых действий, таких как сборка, запуск или уничтожение
+    виртуальных машин.
+  \end{itemize}
+\end{enumerate}
